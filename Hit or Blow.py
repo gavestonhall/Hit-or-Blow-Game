@@ -3,15 +3,12 @@ import random
 # Rules
 print("""
 HIT or BLOW game!
-
 You have 10 guesses to enter the correct 4 digit number.
 At the end of each guess you will receive HITS or BLOWS.
 HIT: Correct digit and in the correct position.
 BLOW: Correct digit but not in the correct position.
-
 You need to guess the correct 4 digit number within 10
 tries or it is game over.
-
 NOTE: Each digit in the code is unique, there will never be
 more than one of the same digit. i.e '2255' '4555'
 """)
@@ -30,6 +27,7 @@ def main():
     """
     Runs the entire game.
     """
+    win = False
     guess_count = 1
     code = code_creator()
 
@@ -66,13 +64,15 @@ def main():
 
         # Winning the game stuff
         if hits == 4:
+            win = True
             print("\nCongratulations you guessed the correct code: {}".format(code))
             break
 
         guess_count += 1
 
     # Losing the game stuff
-    print("\nUnlucky! You didn't manage to find the code: {}\n".format(code))
+    if win == False:
+        print("\nUnlucky! You didn't manage to find the code: {}\n".format(code))
     
     retry = ""
     while retry not in ["y", "n"]:
@@ -89,3 +89,4 @@ if __name__ == "__main__":
 
     else:
         exit
+        
